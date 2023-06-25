@@ -23,9 +23,26 @@ javac HelloWorld.java
 java HelloWorld
 ```
 
-If all goes well, you should see `Hello, world!` printed on the command line.
+If all goes well, you should see `Hello, world!` printed on the command line. If you don't see that or get some other
+kind of error, make sure you did the setup correctly in `00_setup`.
 
 ## Discuss
+
+### Line by line
+We'll go more in-depth into some of these keywords in later lessons, but here's a brief overview.
+
+1. `public class HelloWorld {` - This is the opening line of the file. It defines a class named `HelloWorld`. It 
+2. `public static void main(String[] args) {` - This is the *method signature* of the main method. It defines a
+`static` method named `main` which returns no value and has a single parameter named `args` which is of a `String` array
+type. All those terms will make sense in due course!
+3. `System.out.println("Hello, world!");` - This is our first and only instruction. `System.out.println` will print to
+the console the arguments given. In this case, the argument given is "Hello, world!". All instructions in Java must end
+in a semi-colon (`;`). If you miss out a semi-colon then you'll get an error when running `javac` saying "error: ';'
+expected".
+4. `}` (x2) - Notice how the class and method signature end in an opening parenthesis (`{`). These must be matched up
+with closing parentheses. If you leave one of these out, you'll get an error running `javac` that says "error: reached end of file while parsing".
+
+### Explain the funny words above, magic man
 
 - What is a class?
     + Every Java file is a *class* (kinda, see how this is not entirely true in future lessons!). One file has one top
@@ -38,15 +55,13 @@ If all goes well, you should see `Hello, world!` printed on the command line.
     + When you run `java HelloWorld`, you're running the `java` program which opens the `HelloWorld.class` file and looks for the `main` method.
     + Whatever is in the main method is executed, aka run.
 - What is `public` or `static` or `void` or `String[] args`!?
-    + Find out next lesson!
-- `System.out.println("Hello, world!");` ?
-    + This is our first and only instruction
-    + `System.out.println` will print to the console the arguments given. In this case, the argument given is "Hello, world!"
-- What does `javac` do?
+    + Find out soon!
+- What does `javac` actually do?
     + This compiles the human readable `.java` file to a machine readable `.class` file.
-    + Human readable means a human can read it (duh)
+    + Human readable means a human can read it (should've seen that one coming)
     + If you open the `.class` file, you'll just see what's called byte code, a bunch of 4 character strings.
-    + It's not important to know about byte code now, but remember that your `.class` file is what is executed, not `.java`
+    + It's not important to know about byte code now, but remember that your `.class` file is what is executed, not
+    the `.java` file
     + So to make a `.class`, we need to run `javac TheJavaFile.java` which makes a `.class` file in the same location
     + If you make changes to the `.java` file, you must *recompile* the `.class` file (i.e. run `javac HelloWorld.java`)
-    + **Try it now!** Change "world" to your name. Recompile the code and run `java HelloWorld`.
+    + **Try it now!** Change "world" to your name. Recompile the code and run `java HelloWorld`. What happens?
