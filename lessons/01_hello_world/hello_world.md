@@ -44,24 +44,34 @@ with closing parentheses. If you leave one of these out, you'll get an error run
 
 ### Explain the funny words above, magic man
 
-- What is a class?
-    + Every Java file is a *class* (kinda, see how this is not entirely true in future lessons!). One file has one top
-    level class.
-    + This class must have the same name as the file.
-    + A class contains other Java constructs that we'll come across.
-- What is the `main` method?
-    + Java contains *methods*, which we'll learn about next!
-    + This class has the special `main` method.
-    + When you run `java HelloWorld`, you're running the `java` program which opens the `HelloWorld.class` file and looks for the `main` method.
-    + Whatever is in the main method is executed, aka run.
-- What is `public` or `static` or `void` or `String[] args`!?
-    + Find out soon!
-- What does `javac` actually do?
-    + This compiles the human readable `.java` file to a machine readable `.class` file.
-    + Human readable means a human can read it (should've seen that one coming)
-    + If you open the `.class` file, you'll just see what's called byte code, a bunch of 4 character strings.
-    + It's not important to know about byte code now, but remember that your `.class` file is what is executed, not
-    the `.java` file
-    + So to make a `.class`, we need to run `javac TheJavaFile.java` which makes a `.class` file in the same location
-    + If you make changes to the `.java` file, you must *recompile* the `.class` file (i.e. run `javac HelloWorld.java`)
-    + **Try it now!** Change "world" to your name. Recompile the code and run `java HelloWorld`. What happens?
+#### What is a class?
+Every Java file is a *class* (kinda, see how this is not entirely true in future lessons!). One file has one top level
+class. This class must have the same name as the file. A class contains other Java constructs that we'll come across.
+
+#### What is the `main` method?
+Java contains *methods*. These are the functions and operations that are run in your program to make stuff happen. This
+class has the special `main` method. When you run `java HelloWorld`, you're running the `java` program which opens the
+`HelloWorld.class` file and looks for the `main` method. Whatever is in the main method is executed, aka run.
+
+#### What is `public` or `static` or `void` or `String[] args`!?
+Find out soon! For the curious (and to have something to latch on to later):
+
+- `public` is the visiblity modifier. This method being `public` means it can be called from any other class
+- `static` means the method belongs to the class and is shared, rather than belonging to a single an instantiation of
+the class
+- `void` is the return type. A `void` method returns nothing.
+- `String[] args` sets a `String` array parameter  named `args` that is require to call this method.
+
+All of the above will make sense in time!
+
+#### What does `javac` actually do?
+This compiles the human readable `.java` file to a machine readable `.class` file. Human readable means a human can read
+it (should've seen that one coming) If you open the `.class` file, you'll just see what's called byte code, a bunch of
+gibberish looking 4 character strings.
+
+It's not important to know about byte code now, but remember that your `.class`
+file is what is executed, not the `.java` file. So to make a `.class`, we need to run `javac TheJavaFile.java` which
+makes a `.class` file in the same location. If you make changes to the `.java` file, you must *recompile* the `.class`
+file (i.e. run `javac HelloWorld.java`)
+
+**Try it now!** Change "world" to your name. Recompile the code and run `java HelloWorld`. What happens?
