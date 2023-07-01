@@ -18,7 +18,7 @@ public class ClockworkMan {
     private char torso;
     private Action action;
     private int phase;
-
+    private String speech;
 
     public ClockworkMan() {
         this('@', 'w', 'A');
@@ -30,6 +30,7 @@ public class ClockworkMan {
         this.torso = torso;
         this.action = Action.IDLE;
         this.phase = 0;
+        this.speech = "";
     }
 
     public void setHead(final char head) {
@@ -46,8 +47,22 @@ public class ClockworkMan {
         this.torso = torso;
     }
 
-    public char[][] getNextCharArrays() {
-        phase++;
+    public void setSpeech(final String speech) {
+        this.speech = speech;
+    }
+
+    public String getSpeech() {
+        return speech;
+    }
+
+    public char[][] getBodyCharArrays() {
+        return getBodyCharArrays(false);
+    }
+
+    public char[][] getBodyCharArrays(boolean increasePhase) {
+        if (increasePhase) {
+            phase++;
+        }
         final char arms;
         final char leftLeg;
         final char rightLeg;
@@ -104,6 +119,19 @@ public class ClockworkMan {
         this.phase = 0;
     }
 
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        char[][] body = getBodyCharArrays(false);
+        for (int i = 0; i < body.length; i++) {
+            sb.append(body[i]);
+            if (i == 0 && speech.length() > 0) {
+                sb.append(" \"").append(getSpeech()).append("\"");
+            }
+            sb.append('\n');
+        }
+        return sb.substring(0, sb.length() - 1);
+    }
+
     enum Action {
         IDLE,
         LEFT,
@@ -114,21 +142,17 @@ public class ClockworkMan {
 
     public static void main(String[] args) {
         final ClockworkMan clockwork = new ClockworkMan('a', 'b', 'c');
-        for (char[] line: clockwork.getNextCharArrays()) {
-            System.out.println(new String(line));
-        }
-
+        
+        System.out.println(clockwork);
         System.out.println();
 
         clockwork.setAction("right");
+        clockwork.setSpeech("manual testing is all I have :(");
         clockwork.setHead('x');
         clockwork.setChest('y');
         clockwork.setTorso('z');
 
-        for (char[] line: clockwork.getNextCharArrays()) {
-            System.out.println(new String(line));
-        }
-
+        System.out.println(clockwork);
         System.out.println();
 
         for (ClockworkMan.Action action: ClockworkMan.Action.values()) {
@@ -136,9 +160,9 @@ public class ClockworkMan {
 
             clockwork.setAction(action.toString());
 
-            char[][] phaseOne = clockwork.getNextCharArrays();
-            char[][] phaseTwo = clockwork.getNextCharArrays();
-            char[][] phaseThree = clockwork.getNextCharArrays();
+            char[][] phaseOne = clockwork.getBodyCharArrays(true);
+            char[][] phaseTwo = clockwork.getBodyCharArrays(true);
+            char[][] phaseThree = clockwork.getBodyCharArrays(true);
 
             if (phaseOne.length != phaseTwo.length || phaseTwo.length != phaseThree.length) {
                 throw new RuntimeException("Phases have mismatched lengths!");
